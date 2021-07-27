@@ -4,8 +4,8 @@ author: inventivetalent
 version: ${project.version}
 api-version: '1.13'
 
-softdepend: [PacketListenerApi]
+softdepend: [ PacketListenerApi ]
 
 commands:
   mapmanager:
-    aliases: [mmanager]
+    aliases: [ mmanager ]

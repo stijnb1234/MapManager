@@ -1,7 +1,7 @@
 // From https://github.com/bergerhealer/BKCommonLib, modified by Joiubaxas#4650
 package org.inventivetalent.mapmanager.util;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.Arrays;
 
 public class MapColorSpaceData implements Cloneable {
@@ -62,7 +62,7 @@ public class MapColorSpaceData implements Cloneable {
         return clone;
     }
 
-    private static final int getDataIndex(int r, int g, int b) {
+    private static int getDataIndex(int r, int g, int b) {
         return (r & 0xFF) + ((g & 0xFF) << 8) + ((b & 0xFF) << 16);
     }
 }

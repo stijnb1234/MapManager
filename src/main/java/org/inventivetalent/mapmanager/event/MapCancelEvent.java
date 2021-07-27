@@ -36,52 +36,52 @@ import org.inventivetalent.mapmanager.manager.MapManager;
 
 public class MapCancelEvent extends Event implements Cancellable {
 
-	private Player  player;
-	private int     id;
-	private boolean cancelled;
+    private final Player player;
+    private final int id;
+    private boolean cancelled;
 
-	public MapCancelEvent(Player player, int id) {
-		this.player = player;
-		this.id = id;
-	}
+    public MapCancelEvent(Player player, int id) {
+        this.player = player;
+        this.id = id;
+    }
 
-	public MapCancelEvent(Player player, int id, boolean async) {
-		super(async);
-		this.player = player;
-		this.id = id;
-	}
+    public MapCancelEvent(Player player, int id, boolean async) {
+        super(async);
+        this.player = player;
+        this.id = id;
+    }
 
 
-	public Player getPlayer() {
-		return player;
-	}
+    public Player getPlayer() {
+        return player;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public boolean isAllowVanilla() {
-		return MapManager.Options.ALLOW_VANILLA;
-	}
+    public boolean isAllowVanilla() {
+        return MapManager.Options.ALLOW_VANILLA;
+    }
 
-	@Override
-	public boolean isCancelled() {
-		return cancelled;
-	}
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-	@Override
-	public void setCancelled(boolean b) {
-		cancelled = b;
-	}
+    @Override
+    public void setCancelled(boolean b) {
+        cancelled = b;
+    }
 
-	private static HandlerList handlerList = new HandlerList();
+    private static final HandlerList handlerList = new HandlerList();
 
-	@Override
-	public HandlerList getHandlers() {
-		return handlerList;
-	}
+    @Override
+    public HandlerList getHandlers() {
+        return handlerList;
+    }
 
-	public static HandlerList getHandlerList() {
-		return handlerList;
-	}
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
 }

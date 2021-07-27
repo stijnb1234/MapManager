@@ -9,25 +9,25 @@ import java.util.List;
 
 class CommandHandler implements CommandExecutor, TabCompleter {
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-		if (args.length == 0) {
-			if (sender.hasPermission("mapmanager.reload")) {
-				sender.sendMessage("§7/mapmanager reload");
-				sender.sendMessage("§eReload the configuration");
-			}
-			return true;
-		}
-		if ("reload".equalsIgnoreCase(args[0])) {
-			if (!sender.hasPermission("mapmanager.reload")) {
-				sender.sendMessage("§cNo permission");
-				return false;
-			}
-			sender.sendMessage("§7Reloading...");
-			MapManagerPlugin.instance.reload();
-			sender.sendMessage("§aConfiguration reloaded.");
-			return true;
-		}
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+        if (args.length == 0) {
+            if (sender.hasPermission("mapmanager.reload")) {
+                sender.sendMessage("§7/mapmanager reload");
+                sender.sendMessage("§eReload the configuration");
+            }
+            return true;
+        }
+        if ("reload".equalsIgnoreCase(args[0])) {
+            if (!sender.hasPermission("mapmanager.reload")) {
+                sender.sendMessage("§cNo permission");
+                return false;
+            }
+            sender.sendMessage("§7Reloading...");
+            MapManagerPlugin.instance.reload();
+            sender.sendMessage("§aConfiguration reloaded.");
+            return true;
+        }
 //		if ("test".equalsIgnoreCase(args[0])) {
 //			try {
 //				BufferedImage bufferedImage = ImageIO.read(new URL("https://i.imgur.com/iJU3GUq.png"));
@@ -43,11 +43,11 @@ class CommandHandler implements CommandExecutor, TabCompleter {
 //				e.printStackTrace();
 //			}
 //		}
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-		return null;
-	}
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        return null;
+    }
 }

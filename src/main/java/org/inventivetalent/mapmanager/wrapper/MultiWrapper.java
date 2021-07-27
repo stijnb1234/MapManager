@@ -4,6 +4,6 @@ import org.inventivetalent.mapmanager.ArrayImage;
 
 public interface MultiWrapper {
 
-	 ArrayImage[][] getMultiContent();
+    ArrayImage[][] getMultiContent();
 
 }

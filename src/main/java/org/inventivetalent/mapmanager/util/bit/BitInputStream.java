@@ -7,7 +7,6 @@ import java.io.InputStream;
 public class BitInputStream extends InputStream {
     private int bitbuff = 0;
     private int bitbuff_len = 0;
-    private boolean eos = false;
     private boolean closed = false;
     private final InputStream input;
     private final boolean closeInput;
@@ -42,9 +41,9 @@ public class BitInputStream extends InputStream {
             int readByte = -1;
             try {
                 readByte = this.input.read();
-            } catch (IOException ex) {}
+            } catch (IOException ignored) {
+            }
             if (readByte == -1) {
-                this.eos = true;
                 return -1;
             }
             this.bitbuff |= (readByte << this.bitbuff_len);

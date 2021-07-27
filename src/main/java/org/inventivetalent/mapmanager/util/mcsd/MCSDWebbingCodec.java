@@ -2,24 +2,13 @@
 package org.inventivetalent.mapmanager.util.mcsd;
 
 import org.inventivetalent.mapmanager.util.bit.BitInputStream;
-import org.inventivetalent.mapmanager.util.bit.BitPacket;
 
 import java.io.IOException;
 
 public class MCSDWebbingCodec {
-    private int written_cells;
     private int last_x, last_y;
     private int last_dx, last_dy;
-    public boolean[]    strands       = new boolean[1 << 16];
-    private BitPacket[] packets       = new BitPacket[1024];
-    private int         packets_count = 0;
-
-    public MCSDWebbingCodec() {
-        for (int i = 0; i < this.packets.length; i++) {
-            this.packets[i] = new BitPacket();
-        }
-    }
-
+    public boolean[] strands = new boolean[1 << 16];
 
     public void reset(boolean[] cells, boolean copyCells) {
         if (copyCells) {
@@ -27,12 +16,10 @@ public class MCSDWebbingCodec {
         } else {
             this.strands = cells;
         }
-        this.written_cells = 0;
         this.last_x = -1000;
         this.last_y = -1000;
         this.last_dx = 1;
         this.last_dy = 1;
-        this.packets_count = 0;
     }
 
 

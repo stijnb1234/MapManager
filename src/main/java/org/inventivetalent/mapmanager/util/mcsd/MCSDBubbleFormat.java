@@ -4,13 +4,12 @@ package org.inventivetalent.mapmanager.util.mcsd;
 import org.inventivetalent.mapmanager.util.MapColorSpaceData;
 import org.inventivetalent.mapmanager.util.bit.BitInputStream;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.GZIPInputStream;
-
 
 
 public class MCSDBubbleFormat extends MapColorSpaceData {
@@ -19,8 +18,7 @@ public class MCSDBubbleFormat extends MapColorSpaceData {
 
 
     public void readFrom(InputStream stream) throws IOException {
-        BitInputStream bitStream = new BitInputStream(new GZIPInputStream(stream));
-        try {
+        try (BitInputStream bitStream = new BitInputStream(new GZIPInputStream(stream))) {
 
             for (int i = 0; i < 256; i++) {
                 int r = bitStream.read();
@@ -47,7 +45,7 @@ public class MCSDBubbleFormat extends MapColorSpaceData {
             for (int z = 0; z < 256; z++) {
                 Arrays.fill(this.strands[z], false);
                 codec.reset(strands[z], false);
-                while (codec.readNext(bitStream));
+                while (codec.readNext(bitStream)) ;
             }
 
             this.initColors();
@@ -70,8 +68,6 @@ public class MCSDBubbleFormat extends MapColorSpaceData {
                     }
                 }
             }
-        } finally {
-            bitStream.close();
         }
     }
 
@@ -190,7 +186,7 @@ public class MCSDBubbleFormat extends MapColorSpaceData {
 
         @Override
         public String toString() {
-            return "cell{x="+x+", y="+y+", zmin="+z_min+", zmax="+z_max+", color="+(color & 0xFF)+"}";
+            return "cell{x=" + x + ", y=" + y + ", zmin=" + z_min + ", zmax=" + z_max + ", color=" + (color & 0xFF) + "}";
         }
     }
 

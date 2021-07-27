@@ -19,77 +19,83 @@ import org.inventivetalent.mapmanager.wrapper.MapWrapper;
  */
 public class CreativeInventoryMapUpdateEvent extends Event implements Cancellable {
 
-	private Player    player;
-	private int       slot;
-	private ItemStack itemStack;
+    private final Player player;
+    private final int slot;
+    private final ItemStack itemStack;
 
-	private MapWrapper mapWrapper;
+    private MapWrapper mapWrapper;
 
-	private boolean cancelled = true;
+    private boolean cancelled = true;
 
-	public CreativeInventoryMapUpdateEvent(Player player, int slot, ItemStack itemStack) {
-		this.player = player;
-		this.slot = slot;
-		this.itemStack = itemStack;
-	}
+    public CreativeInventoryMapUpdateEvent(Player player, int slot, ItemStack itemStack) {
+        this.player = player;
+        this.slot = slot;
+        this.itemStack = itemStack;
+    }
 
-	public CreativeInventoryMapUpdateEvent(Player player, int slot, ItemStack itemStack, boolean async) {
-		super(async);
-		this.player = player;
-		this.slot = slot;
-		this.itemStack = itemStack;
-	}
+    public CreativeInventoryMapUpdateEvent(Player player, int slot, ItemStack itemStack, boolean async) {
+        super(async);
+        this.player = player;
+        this.slot = slot;
+        this.itemStack = itemStack;
+    }
 
-	/**
-	 * @return the {@link Player} that sent the update
-	 */
-	public Player getPlayer() {
-		return player;
-	}
+    /**
+     * @return the {@link Player} that sent the update
+     */
+    public Player getPlayer() {
+        return player;
+    }
 
-	/**
-	 * @return the update item slot
-	 */
-	public int getSlot() {
-		return slot;
-	}
+    /**
+     * @return the update item slot
+     */
+    public int getSlot() {
+        return slot;
+    }
 
-	/**
-	 * @return the updated {@link ItemStack}
-	 */
-	public ItemStack getItemStack() {
-		return itemStack;
-	}
+    /**
+     * @return the updated {@link ItemStack}
+     */
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
 
-	/**
-	 * @return the {@link MapWrapper} of the item
-	 */
-	public MapWrapper getMapWrapper() {
-		if (this.mapWrapper != null) { return this.mapWrapper; }
-		if (getItemStack() == null) { return null; }
-		if (getItemStack().getType() != Material.MAP) { return null; }
-		MapManager mapManager = ((MapManagerPlugin) Bukkit.getPluginManager().getPlugin("MapManager")).getMapManager();
-		return this.mapWrapper = mapManager.getWrapperForId(getPlayer(), getItemStack().getDurability());
-	}
+    /**
+     * @return the {@link MapWrapper} of the item
+     */
+    public MapWrapper getMapWrapper() {
+        if (this.mapWrapper != null) {
+            return this.mapWrapper;
+        }
+        if (getItemStack() == null) {
+            return null;
+        }
+        if (getItemStack().getType() != Material.MAP) {
+            return null;
+        }
+        MapManager mapManager = ((MapManagerPlugin) Bukkit.getPluginManager().getPlugin("MapManager")).getMapManager();
+        return this.mapWrapper = mapManager.getWrapperForId(getPlayer(), getItemStack().getDurability());
+    }
 
-	@Override
-	public boolean isCancelled() {
-		return cancelled;
-	}
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-	@Override
-	public void setCancelled(boolean b) {
-		cancelled = b;
-	}
+    @Override
+    public void setCancelled(boolean b) {
+        cancelled = b;
+    }
 
-	private static HandlerList handlerList = new HandlerList();
+    private static final HandlerList handlerList = new HandlerList();
 
-	@Override
-	public HandlerList getHandlers() {
-		return handlerList;
-	}
+    @Override
+    public HandlerList getHandlers() {
+        return handlerList;
+    }
 
-	public static HandlerList getHandlerList() {
-		return handlerList;
-	}
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
 }

@@ -5,19 +5,19 @@ import org.inventivetalent.mapmanager.controller.MapController;
 
 public interface MapWrapper {
 
-	/**
-	 * Get this {@link MapWrapper}'s {@link MapController}
-	 *
-	 * @return the {@link MapController}
-	 */
-	MapController getController();
+    /**
+     * Get this {@link MapWrapper}'s {@link MapController}
+     *
+     * @return the {@link MapController}
+     */
+    MapController getController();
 
-	/**
-	 * Get the content of this wrapper
-	 *
-	 * @return the {@link ArrayImage} content
-	 */
-	ArrayImage getContent();
+    /**
+     * Get the content of this wrapper
+     *
+     * @return the {@link ArrayImage} content
+     */
+    ArrayImage getContent();
 
 }
 

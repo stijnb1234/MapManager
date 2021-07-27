@@ -32,7 +32,7 @@ class DefaultMapWrapper implements MapWrapper {
     protected final Map<UUID, Integer> viewers = new HashMap<>();
 
     private static Class<?> Entity;
-    private static Class<?> DataWatcher ;
+    private static Class<?> DataWatcher;
     private static Class<?> PacketPlayOutEntityMetadata;
 
     private static FieldResolver PacketEntityMetadataFieldResolver;
@@ -83,7 +83,9 @@ class DefaultMapWrapper implements MapWrapper {
 
         @Override
         public boolean isViewing(OfflinePlayer player) {
-            if (player == null) { return false; }
+            if (player == null) {
+                return false;
+            }
             return viewers.containsKey(player.getUniqueId());
         }
 
@@ -130,7 +132,9 @@ class DefaultMapWrapper implements MapWrapper {
 
         @Override
         public void sendContent(Player player, boolean withoutQueue) {
-            if (!isViewing(player)) { return; }
+            if (!isViewing(player)) {
+                return;
+            }
             int id = getMapId(player);
             if (withoutQueue && MapManager.Options.Sender.ALLOW_QUEUE_BYPASS) {
                 MapSender.sendMap(id, DefaultMapWrapper.this.content, player);
@@ -153,7 +157,11 @@ class DefaultMapWrapper implements MapWrapper {
             }
 
             //Adjust the slot ID
-            if (slot < 9) { slot += 36; } else if (slot > 35 && slot != 45) { slot = 8 - (slot - 36); }
+            if (slot < 9) {
+                slot += 36;
+            } else if (slot > 35 && slot != 45) {
+                slot = 8 - (slot - 36);
+            }
 
             try {
                 if (PacketPlayOutSlotConstructorResolver == null) {
@@ -436,8 +444,12 @@ class DefaultMapWrapper implements MapWrapper {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (o == null || getClass() != o.getClass()) { return false; }
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         DefaultMapWrapper that = (DefaultMapWrapper) o;
 

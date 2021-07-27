@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 public class MapColorPalette extends MapColorSpaceData {
     private static final MapColorSpaceData COLOR_MAP_DATA = new MapColorSpaceData();
-    public static final byte[] COLOR_MAP_AVERAGE  = new byte[0x10000];
-    public static final byte[] COLOR_MAP_ADD      = new byte[0x10000];
+    public static final byte[] COLOR_MAP_AVERAGE = new byte[0x10000];
+    public static final byte[] COLOR_MAP_ADD = new byte[0x10000];
     public static final byte[] COLOR_MAP_SUBTRACT = new byte[0x10000];
     public static final byte[] COLOR_MAP_MULTIPLY = new byte[0x10000];
     public static final byte[] COLOR_MAP_SPECULAR = new byte[0x10000];
@@ -34,7 +34,7 @@ public class MapColorPalette extends MapColorSpaceData {
 
                 InputStream input = MapColorPalette.class.getResourceAsStream(bub_path);
                 if (input == null) {
-					System.err.println("Missing data file " + bub_path);
+                    System.err.println("Missing data file " + bub_path);
                 } else {
                     bubbleData.readFrom(input);
                     success = true;
@@ -98,9 +98,9 @@ public class MapColorPalette extends MapColorSpaceData {
     }
 
     private static void initColor(int index, int r1, int g1, int b1, int r2, int g2, int b2) {
-        initArray(COLOR_MAP_AVERAGE,  index, (r1 + r2) >> 1, (g1 + g2) >> 1, (b1 + b2) >> 1);
-        initArray(COLOR_MAP_ADD,      index, (r1 + r2),      (g1 + g2),      (b1 + b2));
-        initArray(COLOR_MAP_SUBTRACT, index, (r2 - r1),      (g2 - g1),      (b2 - b1));
+        initArray(COLOR_MAP_AVERAGE, index, (r1 + r2) >> 1, (g1 + g2) >> 1, (b1 + b2) >> 1);
+        initArray(COLOR_MAP_ADD, index, (r1 + r2), (g1 + g2), (b1 + b2));
+        initArray(COLOR_MAP_SUBTRACT, index, (r2 - r1), (g2 - g1), (b2 - b1));
         initArray(COLOR_MAP_MULTIPLY, index, (r1 * r2) / 255, (g1 * g2) / 255, (b1 * b2) / 255);
     }
 
@@ -145,11 +145,11 @@ public class MapColorPalette extends MapColorSpaceData {
         return COLOR_MAP_DATA.get(r, g, b);
     }
 
-    public static final int getMapIndex(byte color_a, byte color_b) {
+    public static int getMapIndex(byte color_a, byte color_b) {
         return (color_a & 0xFF) | ((color_b & 0xFF) << 8);
     }
 
-    public static final Color getRealColor(byte color) {
+    public static Color getRealColor(byte color) {
         return COLOR_MAP_DATA.getColor(color);
     }
 
